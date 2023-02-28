@@ -197,16 +197,17 @@ def word_to_num(number_sentence):
                     thousand_multiplier = number_formation(clean_numbers[0:thousand_index])
                 total_sum += thousand_multiplier * 1000
 
-            if thousand_index > -1 and thousand_index != len(clean_numbers)-1:
-                hundreds = number_formation(clean_numbers[thousand_index+1:])
+            hundreds = 0
+            if thousand_index > -1:
+                if thousand_index != len(clean_numbers)-1:
+                    hundreds = number_formation(clean_numbers[thousand_index+1:])
             elif million_index > -1 and million_index != len(clean_numbers)-1:
                 hundreds = number_formation(clean_numbers[million_index+1:])
             elif billion_index > -1 and billion_index != len(clean_numbers)-1:
                 hundreds = number_formation(clean_numbers[billion_index+1:])
             elif thousand_index == -1 and million_index == -1 and billion_index == -1:
                 hundreds = number_formation(clean_numbers)
-            else:
-                hundreds = 0
+
             total_sum += hundreds
 
     # adding decimal part to total_sum (if exists)
